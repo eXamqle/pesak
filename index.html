@@ -33,16 +33,16 @@
             position: fixed;
             top: 0;
             width: 100%;
-            background: rgba(26, 84, 144, 0.95);
+            background: rgba(255, 255, 255, 0.98);
             backdrop-filter: blur(10px);
             z-index: 1000;
-            padding: 1rem 0;
+            padding: 0.75rem 0;
             transition: all 0.3s ease;
         }
 
         nav.scrolled {
             padding: 0.5rem 0;
-            box-shadow: 0 2px 20px rgba(0,0,0,0.1);
+            box-shadow: 0 4px 30px rgba(0,0,0,0.1);
         }
 
         .nav-container {
@@ -55,23 +55,45 @@
         }
 
         .logo {
-            font-size: 1.5rem;
-            font-weight: 700;
-            color: white;
-            text-decoration: none;
+            height: 60px;
+            display: block;
+        }
+
+        .logo img {
+            height: 100%;
+            width: auto;
+            object-fit: contain;
         }
 
         .nav-links {
             display: flex;
-            gap: 2rem;
+            gap: 2.5rem;
             list-style: none;
+            align-items: center;
         }
 
         .nav-links a {
-            color: white;
+            color: var(--primary-color);
             text-decoration: none;
-            transition: color 0.3s ease;
-            font-weight: 500;
+            transition: all 0.3s ease;
+            font-weight: 600;
+            font-size: 1.05rem;
+            position: relative;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 3px;
+            background: var(--accent-color);
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
         }
 
         .nav-links a:hover {
@@ -86,6 +108,7 @@
             align-items: center;
             justify-content: center;
             overflow: hidden;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
         }
 
         .hero-bg {
@@ -94,7 +117,7 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: linear-gradient(rgba(26, 84, 144, 0.7), rgba(10, 10, 10, 0.8)), url('images/bg.png');
+            background: linear-gradient(rgba(255, 255, 255, 0.8), rgba(245, 247, 250, 0.80)), url('images/bg.png');
             background-size: cover;
             background-position: center;
             animation: zoomIn 20s ease-out infinite alternate;
@@ -109,8 +132,8 @@
             position: relative;
             z-index: 1;
             text-align: center;
-            color: white;
-            max-width: 800px;
+            color: var(--primary-color);
+            max-width: 900px;
             padding: 0 2rem;
             animation: fadeInUp 1s ease-out;
         }
@@ -127,33 +150,39 @@
         }
 
         .hero h1 {
-            font-size: 4rem;
+            font-size: 4.5rem;
             font-weight: 800;
             margin-bottom: 1rem;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-shadow: 0px 0px 30px rgba(26, 84, 144, 0.2);
         }
 
         .hero p {
-            font-size: 1.5rem;
-            margin-bottom: 2rem;
-            font-weight: 300;
+            font-size: 1.6rem;
+            margin-bottom: 2.5rem;
+            font-weight: 400;
+            color: #555;
         }
 
         .cta-button {
             display: inline-block;
-            padding: 1rem 3rem;
-            background: var(--accent-color);
+            padding: 1.2rem 3.5rem;
+            background: linear-gradient(135deg, var(--accent-color), #ff8659);
             color: white;
             text-decoration: none;
             border-radius: 50px;
             font-weight: 600;
+            font-size: 1.1rem;
             transition: all 0.3s ease;
-            box-shadow: 0 4px 15px rgba(255, 107, 53, 0.4);
+            box-shadow: 0 8px 25px rgba(255, 107, 53, 0.3);
         }
 
         .cta-button:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(255, 107, 53, 0.6);
+            transform: translateY(-3px);
+            box-shadow: 0 12px 35px rgba(255, 107, 53, 0.4);
         }
 
         /* About Section */
@@ -170,10 +199,14 @@
 
         .section-title {
             text-align: center;
-            font-size: 2.5rem;
+            font-size: 3rem;
             margin-bottom: 3rem;
-            color: var(--primary-color);
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
             position: relative;
+            font-weight: 800;
         }
 
         .section-title::after {
@@ -199,7 +232,20 @@
         /* Services Section */
         .services {
             padding: 5rem 0;
-            background: var(--section-bg);
+            background: linear-gradient(135deg, #f5f7fa 0%, #e9ecef 100%);
+            position: relative;
+        }
+
+        .services::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image: radial-gradient(circle at 20% 80%, rgba(26, 84, 144, 0.05) 0%, transparent 50%),
+                              radial-gradient(circle at 80% 20%, rgba(255, 107, 53, 0.05) 0%, transparent 50%);
+            pointer-events: none;
         }
 
         .services-grid {
@@ -212,11 +258,12 @@
         .service-card {
             background: white;
             padding: 3rem;
-            border-radius: 10px;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
-            transition: all 0.3s ease;
+            border-radius: 20px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.08);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
             position: relative;
             overflow: hidden;
+            border: 1px solid rgba(0,0,0,0.05);
         }
 
         .service-card::before {
@@ -228,7 +275,7 @@
             height: 5px;
             background: linear-gradient(90deg, var(--primary-color), var(--accent-color));
             transform: translateX(-100%);
-            transition: transform 0.3s ease;
+            transition: transform 0.4s ease;
         }
 
         .service-card:hover::before {
@@ -236,21 +283,27 @@
         }
 
         .service-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+            transform: translateY(-10px);
+            box-shadow: 0 20px 60px rgba(0,0,0,0.15);
         }
 
         .service-icon {
-            width: 60px;
-            height: 60px;
+            width: 70px;
+            height: 70px;
             background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
-            border-radius: 50%;
+            border-radius: 20px;
             display: flex;
             align-items: center;
             justify-content: center;
             margin-bottom: 1.5rem;
-            font-size: 1.5rem;
+            font-size: 1.8rem;
             color: white;
+            box-shadow: 0 8px 25px rgba(26, 84, 144, 0.25);
+            transition: transform 0.3s ease;
+        }
+
+        .service-card:hover .service-icon {
+            transform: rotate(-5deg) scale(1.1);
         }
 
         .service-card h3 {
@@ -285,7 +338,10 @@
         }
 
         .contact .section-title {
-            color: white;
+            background: linear-gradient(135deg, #ffffff 0%, #e0e0e0 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
         }
 
         .contact-content {
@@ -346,7 +402,7 @@
         .mobile-menu-toggle span {
             width: 25px;
             height: 3px;
-            background: white;
+            background: var(--primary-color);
             transition: all 0.3s ease;
         }
 
@@ -394,7 +450,9 @@
     <!-- Navigation -->
     <nav id="navbar">
         <div class="nav-container">
-            <a href="#" class="logo">Strugarstvo Pešak</a>
+            <a href="#" class="logo">
+                <img src="images/logo.png" alt="Strugarstvo Pešak">
+            </a>
             <ul class="nav-links">
                 <li><a href="#home">Domov</a></li>
                 <li><a href="#about">O nas</a></li>
@@ -413,7 +471,7 @@
     <section class="hero" id="home">
         <div class="hero-bg"></div>
         <div class="hero-content">
-            <h1>Strugarstvo Pešak</h1>
+            <img src="images/logo.png" alt="Strugarstvo Pešak">
         </div>
     </section>
 
