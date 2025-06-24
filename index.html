@@ -382,6 +382,40 @@
             line-height: 1.2;
         }
 
+		.card-grid {
+			display: grid;
+			grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+			gap: 2rem;
+			margin-top: 2rem;
+		}
+
+		.card {
+			background-color: #f9f9f9;
+			padding: 1.5rem;
+			border-radius: 8px;
+			box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+			transition: transform 0.3s ease, box-shadow 0.3s ease, border 0.3s ease;
+			border: 1px solid var(--border-color);
+		}
+
+		.card:hover {
+			transform: translateY(-5px);
+			box-shadow: 0 6px 20px rgba(0,0,0,0.1);
+			border: 1px solid var(--accent-color);
+		}
+
+		.card h3 {
+			margin-top: 0;
+			margin-bottom: 1rem;
+			font-size: 1.25rem;
+			color: #333;
+		}
+
+		.card p {
+			margin: 0;
+			color: #555;
+		}
+
         /* Flame Arrestors Detail Section */
         .flame-details {
             background: var(--bg-section);
@@ -837,21 +871,37 @@
         </div>
     </section>
 
-    <!-- About Section -->
-    <section class="about" id="about">
-        <div class="container">
-            <div class="section-header fade-in">
-                <h2 class="section-title">O podjetju</h2>
-                <p class="section-subtitle">Tradicija, kakovost in zanesljivost od leta 1963</p>
-            </div>
-            <div class="about-content fade-in">
-                <p>Začetki podjetja »Strugarstvo Pešak« segajo v leto 1963 in z dolgoletnimi izkušnjami na področju obdelave kovin smo postali zanesljiv in zaupanja vreden poslovni partner. Tako kot so vsa leta rasli in se razvijali naši kupci, tako se je razvijalo in širilo tudi naše podjetje.</p>
-                <p>Kot fleksibilen dobavitelj se prilagajamo potrebam naročnikov in smo danes še posebej ponosni na kvaliteto naših izdelkov, ažurnost ter dobre poslovne odnose.</p>
-                <p>Z optimizmom zremo v prihodnost in z željo po novih tehnologijah in pokrivanju najširšega spektra obdelave kovin, obnavljamo in širimo strojni park.</p>
-                <p>V kolikor imate potrebe po izdelavi proizvodov po predhodno izdelani dokumentaciji ali želite, da s skupnim znanjem poiščemo optimalne rešitve, Vas vabimo, da nam pošljete svoje povpraševanje.</p>
-            </div>
-        </div>
-    </section>
+	<!-- About Section with Cards -->
+	<section class="about" id="about">
+		<div class="container">
+			<div class="section-header fade-in">
+				<h2 class="section-title">O podjetju</h2>
+				<p class="section-subtitle">Tradicija, kakovost in zanesljivost od leta 1963.</p>
+			</div>
+
+			<div class="card-grid fade-in">
+				<div class="card">
+					<h3>O podjetju</h3>
+					<p>Strugarstvo Pešak je družinsko podjetje z več kot 60-letno tradicijo na področju obdelave kovin. Začeli smo leta 1963 z eno stružnico, danes pa nas odlikuje sodoben strojni park in visoka stopnja prilagodljivosti.</p>
+				</div>
+
+				<div class="card">
+					<h3>Kaj delamo</h3>
+					<p>Izdelujemo kakovostne kovinske izdelke in polizdelke iz jekla, aluminija, nerjavečega jekla, medenine, brona, bakra in plastike – za različne industrije.</p>
+				</div>
+
+				<div class="card">
+					<h3>Tehnologija</h3>
+					<p>Naša proizvodnja temelji na sodobnih CNC strojih za palično struženje in rezkanje ter izkušenem kolektivu, ki skrbi za natančnost in učinkovitost.</p>
+				</div>
+
+				<div class="card">
+					<h3>Naša prednost</h3>
+					<p>Zanesljivost, prilagodljivost, ažurnost in kakovost – vrednote, ki jih cenimo mi in naši poslovni partnerji. Vedno iščemo optimalne rešitve.</p>
+				</div>
+			</div>
+		</div>
+	</section>
 
     <!-- Services Section -->
     <section class="services" id="storitve">
@@ -1057,7 +1107,7 @@
                     <div class="flame-details-text">
                         <div class="flame-detail-row"><strong>Plin:</strong> Acetilen</div>
                         <div class="flame-detail-row"><strong>Vhodni priključek:</strong> Holander R3/8"L</div>
-                        <div class="flame-detail-row"><strong>Izhodni priključek:</strong> Matica R3/8"L</div>
+                        <div class="flame-detail-row"><strong>Izhodni priključek:</strong> Matica R3/8"D</div>
                         <div class="flame-detail-row"><strong>Mesto montaže:</strong> Strojni rezalnik</div>
                         <div class="flame-detail-row"><strong>Max. pritisk:</strong> 1,5 bar</div>
                     </div>
