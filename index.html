@@ -4,10 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Strugarstvo Pešak - CNC Obdelava Kovin | Celje</title>
-    
-    <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-    
     <style>
         * {
             margin: 0;
@@ -16,925 +13,478 @@
         }
 
         :root {
-            --primary-color: #1a2332;
-            --secondary-color: #2c3e50;
-            --accent-color: #2980b9;
-            --accent-hover: #3498db;
-            --text-light: #7f8c8d;
-            --text-dark: #2c3e50;
-            --bg-light: #f8f9fa;
-            --bg-section: #ecf0f1;
-            --border-color: #dfe6e9;
-            --success-color: #27ae60;
-            --gradient-primary: linear-gradient(135deg, #2980b9 0%, #3498db 100%);
-            --gradient-dark: linear-gradient(135deg, #1a2332 0%, #2c3e50 100%);
+            --dark: #0f1724;
+            --darker: #070c13;
+            --light: #f5f7fb;
+            --accent: #1c6edc;
+            --accent-soft: rgba(28, 110, 220, 0.12);
+            --text: #1e2735;
+            --muted: #6d7a8f;
+            --border: #d8e1ef;
         }
 
         body {
             font-family: 'Open Sans', sans-serif;
+            background: #fff;
+            color: var(--text);
             line-height: 1.7;
-            color: var(--text-dark);
-            overflow-x: hidden;
-            background: #ffffff;
-            font-weight: 400;
-            letter-spacing: 0.02em;
         }
 
-        /* Scroll Progress Bar */
+        img {
+            max-width: 100%;
+            display: block;
+        }
+
         .scroll-progress {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
-            height: 3px;
-            background: rgba(41, 128, 185, 0.1);
-            z-index: 10000;
+            height: 4px;
+            background: #fff;
+            z-index: 1000;
         }
 
         .scroll-progress-bar {
-            height: 100%;
-            background: var(--gradient-primary);
             width: 0;
-            transition: width 0.2s ease;
+            height: 100%;
+            background: linear-gradient(120deg, var(--accent), #5fa6ff);
         }
 
-        /* Navigation */
-        nav {
+        header {
             position: fixed;
-            top: 0;
-            width: 100%;
-            background: rgba(255, 255, 255, 0.97);
-            backdrop-filter: blur(15px);
-            -webkit-backdrop-filter: blur(15px);
-            z-index: 1000;
-            padding: 1.2rem 0;
-            box-shadow: 0 1px 0 rgba(0, 0, 0, 0.05);
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-
-        nav.scrolled {
-            padding: 0.8rem 0;
-            box-shadow: 0 2px 15px rgba(0, 0, 0, 0.08);
+            top: 4px;
+            left: 0;
+            right: 0;
+            z-index: 950;
+            background: rgba(255, 255, 255, 0.98);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(0, 0, 0, 0.08);
         }
 
         .nav-container {
-            max-width: 1280px;
+            max-width: 1200px;
             margin: 0 auto;
-            padding: 0 2rem;
+            padding: 1rem 2rem;
             display: flex;
             justify-content: space-between;
             align-items: center;
-        }
-
-        .logo {
-            height: 55px;
-            transition: height 0.3s ease;
-        }
-
-        nav.scrolled .logo {
-            height: 45px;
+            gap: 1.5rem;
         }
 
         .logo img {
-            height: 100%;
-            width: auto;
-            object-fit: contain;
+            height: 60px;
         }
 
-        .nav-links {
-            display: flex;
-            gap: 3rem;
+        nav ul {
             list-style: none;
+            display: flex;
+            gap: 1.5rem;
             align-items: center;
-        }
-
-        .nav-links a {
-            color: var(--text-dark);
-            text-decoration: none;
-            font-weight: 500;
-            font-size: 0.95rem;
-            position: relative;
-            transition: color 0.3s ease;
-            font-family: 'Open Sans', sans-serif;
-            letter-spacing: 0.03em;
+            font-size: 0.9rem;
             text-transform: uppercase;
-            font-size: 0.875rem;
+            letter-spacing: 0.08em;
         }
 
-        .nav-links a::after {
+        nav a {
+            color: var(--text);
+            text-decoration: none;
+            font-weight: 600;
+            position: relative;
+        }
+
+        nav a::after {
             content: '';
             position: absolute;
-            bottom: -6px;
             left: 0;
-            width: 0;
+            bottom: -6px;
             height: 2px;
-            background: var(--accent-color);
-            transition: width 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            width: 0;
+            background: var(--accent);
+            transition: width 0.2s ease;
         }
 
-        .nav-links a:hover {
-            color: var(--accent-color);
-        }
-
-        .nav-links a:hover::after {
+        nav a:hover::after,
+        nav a:focus-visible::after {
             width: 100%;
         }
 
-        /* Hero Section */
         .hero {
             position: relative;
-            min-height: 100vh;
+            min-height: 95vh;
             display: flex;
             align-items: center;
             justify-content: center;
+            text-align: center;
+            color: #fff;
             overflow: hidden;
         }
 
-        .hero-bg {
+        .hero::before {
+            content: '';
             position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(rgba(248, 249, 250, 0.92), rgba(236, 240, 241, 0.92)), url('images/bg.png');
-            background-size: cover;
-            background-position: center;
-            background-attachment: fixed;
+            inset: 0;
+            background: linear-gradient(rgba(7, 12, 19, 0.85), rgba(15, 23, 36, 0.9)), url('images/bg.png') center/cover no-repeat;
         }
 
-        .hero-pattern {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            height: 150px;
-            background: url('data:image/svg+xml;utf8,<svg viewBox="0 0 1200 150" xmlns="http://www.w3.org/2000/svg"><path d="M0 75L50 68.8C100 62.5 200 50 300 43.8C400 37.5 500 37.5 600 50C700 62.5 800 87.5 900 93.8C1000 100 1100 87.5 1150 81.3L1200 75V150H1150C1100 150 1000 150 900 150C800 150 700 150 600 150C500 150 400 150 300 150C200 150 100 150 50 150H0V75Z" fill="%232980b9" fill-opacity="0.06"/></svg>') no-repeat bottom;
-            background-size: cover;
-        }
-
-        .hero-content {
+        .hero-inner {
             position: relative;
             z-index: 1;
-            text-align: center;
+            padding: 12rem 2rem 6rem;
             max-width: 900px;
-            padding: 0 2rem;
-            animation: fadeInUp 1s ease-out;
         }
 
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        .hero-content img {
-            max-width: 450px;
-            width: 100%;
-            height: auto;
-            margin-bottom: 2.5rem;
-            filter: drop-shadow(0 10px 25px rgba(0, 0, 0, 0.08));
+        .hero-inner img {
+            margin: 0 auto 2rem;
+            width: 220px;
+            filter: drop-shadow(0 20px 40px rgba(0, 0, 0, 0.35));
         }
 
         .hero h1 {
-            font-family: 'Open Sans', sans-serif;
-            font-size: clamp(2.5rem, 5vw, 4.5rem);
-            font-weight: 700;
-            margin-bottom: 1.5rem;
-            color: var(--primary-color);
-            line-height: 1.2;
-            letter-spacing: -0.02em;
-        }
-
-        .hero .tagline {
-            font-size: 1.375rem;
-            color: var(--text-light);
-            margin-bottom: 3rem;
-            font-weight: 300;
-            font-family: 'Open Sans', sans-serif;
-            letter-spacing: 0.02em;
-        }
-
-        .cta-button {
-            display: inline-block;
-            padding: 1.125rem 3rem;
-            background: var(--gradient-primary);
-            color: white;
-            text-decoration: none;
-            border-radius: 6px;
-            font-weight: 600;
-            font-size: 1rem;
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            box-shadow: 0 4px 15px rgba(41, 128, 185, 0.25);
+            font-size: clamp(2.2rem, 4vw, 3.8rem);
             text-transform: uppercase;
-            letter-spacing: 0.05em;
-            font-family: 'Open Sans', sans-serif;
+            letter-spacing: 0.1em;
         }
 
-        .cta-button:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 8px 25px rgba(41, 128, 185, 0.35);
+        .hero p {
+            margin-top: 1.5rem;
+            font-size: 1.125rem;
+            color: rgba(255, 255, 255, 0.85);
         }
 
-        /* Section Styles */
-        section {
-            padding: 6rem 0;
+        .hero .cta-button {
+            display: inline-flex;
+            margin-top: 2rem;
+            padding: 0.9rem 2.3rem;
+            border-radius: 999px;
+            border: none;
+            background: linear-gradient(120deg, var(--accent), #5fa6ff);
+            color: white;
+            font-weight: 600;
+            text-decoration: none;
         }
 
-        .container {
-            max-width: 1280px;
+        .process-tabs {
+            position: sticky;
+            top: 92px;
+            background: var(--darker);
+            z-index: 900;
+            padding: 0.85rem 2rem;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+        }
+
+        .process-tabs nav {
+            max-width: 1100px;
             margin: 0 auto;
-            padding: 0 2rem;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 0.75rem;
         }
 
-        .section-header {
+        .process-tabs a {
+            text-decoration: none;
+            color: #fff;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            font-size: 0.8rem;
+            padding: 0.8rem 1rem;
+            border: 1px solid rgba(255, 255, 255, 0.25);
+            border-radius: 6px;
             text-align: center;
-            margin-bottom: 4rem;
+        }
+
+        main {
+            background: var(--light);
+        }
+
+        section {
+            padding: 5rem 2rem;
+            scroll-margin-top: 140px;
+        }
+
+        .section-inner {
+            max-width: 1150px;
+            margin: 0 auto;
+        }
+
+        .section-heading {
+            text-transform: uppercase;
+            letter-spacing: 0.35em;
+            font-size: 0.85rem;
+            color: var(--accent);
+            margin-bottom: 1rem;
         }
 
         .section-title {
-            font-family: 'Open Sans', sans-serif;
-            font-size: clamp(2rem, 4vw, 3.5rem);
-            font-weight: 700;
-            color: var(--primary-color);
-            margin-bottom: 1rem;
-            letter-spacing: -0.02em;
+            font-size: clamp(2rem, 3vw, 2.8rem);
+            margin-bottom: 0.75rem;
         }
 
         .section-subtitle {
-            font-size: 1.125rem;
-            color: var(--text-light);
-            max-width: 650px;
-            margin: 0 auto;
-            line-height: 1.8;
-            font-weight: 300;
+            color: var(--muted);
+            max-width: 720px;
+            margin-bottom: 3rem;
         }
 
-        /* About Section */
-        .about {
-            background: var(--bg-light);
-        }
-
-        .about-content {
-            max-width: 900px;
-            margin: 0 auto;
-            text-align: center;
-        }
-
-        .about-content p {
-            font-size: 1.125rem;
-            line-height: 1.9;
-            color: var(--text-light);
-            margin-bottom: 1.75rem;
-            font-weight: 400;
-        }
-
-        /* Services Grid */
-        .services {
-            background: white;
-        }
-
-        .services-grid {
+        .card-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(550px, 1fr));
-            gap: 3rem;
-            margin-bottom: 4rem;
-        }
-
-        .service-card {
-            background: white;
-            border-radius: 12px;
-            overflow: hidden;
-            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-            border: 1px solid var(--border-color);
-            display: flex;
-            flex-direction: column;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.04);
-        }
-
-        .service-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
-            border-color: var(--accent-color);
-        }
-
-        .service-image {
-            width: 100%;
-            height: 280px;
-            overflow: hidden;
-            position: relative;
-        }
-
-        .service-image img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: transform 0.5s ease;
-        }
-
-        .service-card:hover .service-image img {
-            transform: scale(1.08);
-        }
-
-        .service-content {
-            padding: 2.5rem;
-        }
-
-        .service-card h3 {
-			font-family: 'Open Sans', sans-serif;
-            font-size: 1.75rem;
-            font-weight: 700;
-            color: var(--primary-color);
-            margin-bottom: 1rem;
-            letter-spacing: -0.01em;
-        }
-
-        .service-card p {
-            color: var(--text-light);
-            line-height: 1.8;
-            margin-bottom: 1.75rem;
-            font-weight: 400;
-        }
-
-        .service-card ul {
-            list-style: none;
-        }
-
-        .service-card ul li {
-            padding: 0.625rem 0;
-            padding-left: 2rem;
-            position: relative;
-            color: var(--text-light);
-            font-size: 0.9375rem;
-            line-height: 1.6;
-        }
-
-        .service-card ul li::before {
-            content: '▪';
-            position: absolute;
-            left: 0;
-            color: var(--accent-color);
-            font-size: 1.25rem;
-            line-height: 1.2;
-        }
-
-		.card-grid {
-			display: grid;
-			grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-			gap: 2rem;
-			margin-top: 2rem;
-		}
-
-		.card {
-			background-color: #f9f9f9;
-			padding: 1.5rem;
-			border-radius: 8px;
-			box-shadow: 0 4px 10px rgba(0,0,0,0.05);
-			transition: transform 0.3s ease, box-shadow 0.3s ease, border 0.3s ease;
-			border: 1px solid var(--border-color);
-		}
-
-		.card:hover {
-			transform: translateY(-5px);
-			box-shadow: 0 6px 20px rgba(0,0,0,0.1);
-			border: 1px solid var(--accent-color);
-		}
-
-		.card h3 {
-			margin-top: 0;
-			margin-bottom: 1rem;
-			font-size: 1.25rem;
-			color: #333;
-		}
-
-		.card p {
-			margin: 0;
-			color: #555;
-		}
-
-        /* Flame Arrestors Detail Section */
-        .flame-details {
-            background: var(--bg-section);
-            padding: 4rem 0;
-        }
-
-        .document-downloads {
-            max-width: 800px;
-            margin: 0 auto 3rem;
-            text-align: center;
-            padding: 2rem;
-            background: white;
-            border-radius: 12px;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
-        }
-
-        .document-downloads h3 {
-            font-size: 1.5rem;
-            color: var(--primary-color);
-            margin-bottom: 1.5rem;
-            font-weight: 600;
-        }
-
-        .download-buttons {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
             gap: 1.5rem;
         }
 
-        .download-btn {
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-            padding: 1.5rem;
-            background: var(--bg-light);
-            border: 2px solid var(--border-color);
-            border-radius: 8px;
-            text-decoration: none;
-            transition: all 0.3s ease;
+        .card {
+            background: #fff;
+            border-radius: 16px;
+            padding: 1.75rem;
+            box-shadow: 0 20px 45px rgba(12, 27, 51, 0.08);
         }
 
-        .download-btn:hover {
-            transform: translateY(-3px);
-            border-color: var(--accent-color);
-            box-shadow: 0 8px 20px rgba(41, 128, 185, 0.15);
-        }
-
-        .download-icon {
-            font-size: 2.5rem;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            width: 60px;
-            height: 60px;
-            background: white;
-            border-radius: 8px;
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
-        }
-
-        .download-text {
-            text-align: left;
-            flex: 1;
-        }
-
-        .download-text strong {
-            display: block;
-            color: var(--primary-color);
-            font-size: 1.125rem;
-            margin-bottom: 0.25rem;
-        }
-
-        .download-text small {
-            color: var(--text-light);
-            font-size: 0.875rem;
-        }
-
-        .flame-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-            gap: 2rem;
-            margin-top: 3rem;
-        }
-
-        .flame-item {
-            background: white;
-            border-radius: 8px;
-            padding: 1.5rem;
-            text-align: center;
-            border: 1px solid var(--border-color);
-            transition: all 0.3s ease;
-            cursor: pointer;
-        }
-
-        .flame-item:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
-            border-color: var(--accent-color);
-        }
-
-        .flame-item img {
-            width: 100%;
-            height: 120px;
-            object-fit: contain;
-            margin-bottom: 1rem;
-        }
-
-        .flame-item h4 {
-            font-size: 1.125rem;
-            color: var(--primary-color);
-            margin-bottom: 0.5rem;
-            font-weight: 600;
-        }
-
-        .flame-item .flame-details-text {
-            margin-top: 1rem;
-            text-align: left;
-            font-size: 0.875rem;
-            color: var(--text-light);
-            line-height: 1.6;
-        }
-
-        .flame-detail-row {
-            padding: 0.375rem 0;
-            border-bottom: 1px solid rgba(0, 0, 0, 0.05);
-        }
-
-        .flame-detail-row:last-child {
-            border-bottom: none;
-        }
-
-        .flame-detail-row strong {
-            color: var(--text-dark);
-            font-weight: 600;
-        }
-
-        /* Gallery */
-        .gallery {
-            background: white;
-        }
-
-        .gallery-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-            gap: 2rem;
-        }
-
-        .gallery-item {
-            position: relative;
+        .process-panel {
+            background: #fff;
+            border-radius: 20px;
             overflow: hidden;
-            border-radius: 8px;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
-            transition: transform 0.3s ease;
-            height: 250px;
-            cursor: pointer;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            margin-bottom: 2.5rem;
+            box-shadow: 0 20px 60px rgba(15, 29, 45, 0.08);
         }
 
-        .gallery-item:hover {
-            transform: translateY(-5px);
-        }
-
-        .gallery-item img {
-            width: 100%;
+        .process-media img {
             height: 100%;
             object-fit: cover;
-            transition: transform 0.4s ease;
         }
 
-        .gallery-item:hover img {
-            transform: scale(1.1);
-        }
-
-        /* Lightbox */
-        .lightbox {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.95);
-            display: none;
-            align-items: center;
-            justify-content: center;
-            z-index: 10000;
-            padding: 2rem;
-        }
-
-        .lightbox.active {
-            display: flex;
-        }
-
-        .lightbox-content {
-            position: relative;
-            max-width: 90%;
-            max-height: 90%;
-        }
-
-        .lightbox-content img {
-            width: 100%;
-            height: 100%;
-            object-fit: contain;
-        }
-
-        .lightbox-close {
-            position: absolute;
-            top: 20px;
-            right: 40px;
-            font-size: 3rem;
-            color: white;
-            cursor: pointer;
-            z-index: 10001;
-            line-height: 1;
-            font-weight: 300;
-        }
-
-        .lightbox-close:hover {
-            color: var(--accent-color);
-        }
-
-        .lightbox-nav {
-            position: absolute;
-            top: 50%;
-            transform: translateY(-50%);
-            font-size: 3rem;
-            color: white;
-            cursor: pointer;
-            padding: 1rem;
-            background: rgba(0, 0, 0, 0.5);
-            border-radius: 4px;
-            transition: background 0.3s ease;
-        }
-
-        .lightbox-nav:hover {
-            background: rgba(0, 0, 0, 0.8);
-        }
-
-        .lightbox-prev {
-            left: 20px;
-        }
-
-        .lightbox-next {
-            right: 20px;
-        }
-
-        /* Contact Section */
-        .contact {
-            background: var(--bg-light);
-        }
-
-        .contact-wrapper {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 4rem;
-            align-items: start;
-        }
-
-        .contact-info {
-            background: white;
+        .process-content {
             padding: 3rem;
-            border-radius: 12px;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
-        }
-
-        .company-name {
-            font-family: 'Open Sans', sans-serif;
-            font-size: 2rem;
-            color: var(--primary-color);
-            margin-bottom: 2rem;
-            font-weight: 700;
-        }
-
-        .contact-details {
             display: flex;
             flex-direction: column;
-            gap: 2rem;
-        }
-
-        .contact-item {
-            display: flex;
-            align-items: flex-start;
             gap: 1.5rem;
         }
 
-        .contact-icon {
-            width: 50px;
-            height: 50px;
-            background: var(--gradient-primary);
-            border-radius: 10px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            flex-shrink: 0;
-            color: white;
-            font-size: 1.25rem;
-            box-shadow: 0 4px 12px rgba(41, 128, 185, 0.2);
+        .process-content ul {
+            list-style: none;
+            display: grid;
+            gap: 0.75rem;
         }
 
-        .contact-text h4 {
-            font-size: 1rem;
-            color: var(--accent-color);
-            margin-bottom: 0.5rem;
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
+        .process-content li {
+            padding-left: 1.5rem;
+            position: relative;
         }
 
-        .contact-text p {
-            color: var(--text-dark);
-            line-height: 1.6;
-            font-size: 1.0625rem;
+        .process-content li::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0.6rem;
+            width: 0.55rem;
+            height: 0.55rem;
+            border-radius: 50%;
+            background: var(--accent);
         }
 
-        .map-container {
-            background: white;
-            border-radius: 12px;
-            overflow: hidden;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
-            height: 100%;
-            min-height: 450px;
+        .varovalke-summary {
+            background: #fff;
+            border-radius: 20px;
+            padding: 3rem;
+            box-shadow: 0 20px 60px rgba(15, 29, 45, 0.08);
         }
 
-        .map-placeholder {
+        .varovalke-summary ul {
+            list-style: none;
+            display: grid;
+            gap: 0.5rem;
+        }
+
+        table {
             width: 100%;
-            height: 100%;
-            background: var(--bg-section);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: var(--text-light);
-            font-size: 1.125rem;
+            border-collapse: collapse;
+            margin-top: 2rem;
+            font-size: 0.95rem;
         }
 
-        /* Footer */
+        th, td {
+            padding: 0.85rem;
+            border-bottom: 1px solid var(--border);
+            text-align: left;
+        }
+
+        th {
+            text-transform: uppercase;
+            letter-spacing: 0.12em;
+            font-size: 0.75rem;
+            color: var(--muted);
+        }
+
+        .gallery-grid,
+        .docs-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .gallery-card,
+        .doc-card {
+            background: #fff;
+            border-radius: 16px;
+            padding: 1.5rem;
+            box-shadow: 0 15px 40px rgba(10, 28, 55, 0.08);
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .gallery-card img {
+            border-radius: 12px;
+            height: 160px;
+            object-fit: cover;
+        }
+
+        .doc-card a {
+            display: inline-flex;
+            margin-top: 0.5rem;
+            text-decoration: none;
+            color: var(--accent);
+            font-weight: 600;
+        }
+
+        .contact-card {
+            background: #fff;
+            border-radius: 20px;
+            padding: 3rem;
+            box-shadow: 0 25px 60px rgba(8, 17, 37, 0.15);
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 2rem;
+        }
+
+        .contact-info ul {
+            list-style: none;
+            display: grid;
+            gap: 1rem;
+        }
+
+        .contact-info li strong {
+            display: block;
+            font-size: 0.8rem;
+            letter-spacing: 0.15em;
+            color: var(--muted);
+        }
+
+        .contact-info li span,
+        .contact-info li a {
+            font-size: 1.05rem;
+            color: var(--text);
+            text-decoration: none;
+        }
+
         footer {
-            background: var(--gradient-dark);
+            background: var(--darker);
             color: rgba(255, 255, 255, 0.7);
             text-align: center;
-            padding: 2.5rem 0;
-            font-size: 0.9375rem;
+            padding: 2rem;
+            font-size: 0.9rem;
         }
 
-        /* Mobile Menu */
-        .mobile-menu-toggle {
-            display: none;
-            flex-direction: column;
-            gap: 4px;
-            cursor: pointer;
-            padding: 4px;
+        .sticky-cta {
+            position: fixed;
+            bottom: 1.5rem;
+            right: 1.5rem;
+            padding: 0.85rem 1.4rem;
+            background: linear-gradient(120deg, var(--accent), #5fa6ff);
+            color: #fff;
+            border-radius: 999px;
+            text-decoration: none;
+            font-weight: 600;
+            box-shadow: 0 18px 35px rgba(12, 69, 153, 0.35);
         }
 
-        .mobile-menu-toggle span {
-            width: 24px;
-            height: 2px;
-            background: var(--text-dark);
-            transition: all 0.3s ease;
-            border-radius: 2px;
-        }
-
-        /* Responsive */
-        @media (max-width: 768px) {
-            .nav-links {
+        @media (max-width: 900px) {
+            nav ul {
                 display: none;
             }
 
-            .mobile-menu-toggle {
-                display: flex;
+            .process-tabs {
+                top: 70px;
             }
 
-            .hero h1 {
-                font-size: 2.25rem;
+            .process-content {
+                padding: 2rem;
             }
-
-            .services-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .contact-wrapper {
-                grid-template-columns: 1fr;
-            }
-
-            .flame-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .gallery-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .download-buttons {
-                grid-template-columns: 1fr;
-            }
-
-            .document-downloads {
-                padding: 1.5rem;
-            }
-        }
-
-        /* Animations */
-        .fade-in {
-            opacity: 0;
-            transform: translateY(30px);
-            transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-
-        .fade-in.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        /* Smooth scroll */
-        html {
-            scroll-behavior: smooth;
         }
     </style>
 </head>
 <body>
-    <!-- Scroll Progress Bar -->
-    <div class="scroll-progress">
-        <div class="scroll-progress-bar" id="scrollProgress"></div>
-    </div>
+    <div class="scroll-progress"><div class="scroll-progress-bar" id="scrollProgress"></div></div>
 
-    <!-- Navigation -->
-    <nav id="navbar">
+    <header>
         <div class="nav-container">
-            <a href="#home" class="logo">
-                <img src="images/logo.png" alt="Strugarstvo Pešak">
-            </a>
-            <ul class="nav-links">
-                <li><a href="#home">Domov</a></li>
-                <li><a href="#about">O nas</a></li>
-                <li><a href="#storitve">Proizvodni program</a></li>
-                <li><a href="#varovalke">Tipi plamenskih varovalk</a></li>
-				<li><a href="#dokumentacija">Dokumentacija</a></li>
-                <li><a href="#galerija">Galerija</a></li>
-                <li><a href="#contact">Kontakt</a></li>
-            </ul>
-            <div class="mobile-menu-toggle">
-                <span></span>
-                <span></span>
-                <span></span>
-            </div>
+            <a class="logo" href="#home"><img src="images/logo.png" alt="Strugarstvo Pešak"></a>
+            <nav>
+                <ul>
+                    <li><a href="#home">Domov</a></li>
+                    <li><a href="#about">O podjetju</a></li>
+                    <li><a href="#galerija">Galerija</a></li>
+                    <li><a href="#contact">Kontakt</a></li>
+                </ul>
+            </nav>
         </div>
-    </nav>
+    </header>
 
-    <!-- Hero Section -->
     <section class="hero" id="home">
-        <div class="hero-bg"></div>
-        <div class="hero-pattern"></div>
-        <div class="hero-content">
+        <div class="hero-inner">
             <img src="images/logo.png" alt="Strugarstvo Pešak">
             <h1>Precizna CNC Obdelava Kovin</h1>
-            <p class="tagline">Več kot 60 let tradicije in izkušenj v kovinsko predelovalni industriji</p>
-            <a href="#contact" class="cta-button">Pošljite povpraševanje</a>
+            <p>Več kot 60 let tradicije in izkušenj v kovinsko predelovalni industriji.</p>
+            <a class="cta-button" href="#contact">Pošljite povpraševanje</a>
         </div>
     </section>
 
-	<!-- About Section with Cards -->
-	<section class="about" id="about">
-		<div class="container">
-			<div class="section-header fade-in">
-				<h2 class="section-title">O podjetju</h2>
-				<p class="section-subtitle">Tradicija, kakovost in zanesljivost od leta 1963.</p>
-			</div>
+    <div class="process-tabs">
+        <nav>
+            <a href="#struzenje">CNC Struženje</a>
+            <a href="#rezkanje">CNC Rezkanje</a>
+            <a href="#varovalke">Suhe plamenske varovalke</a>
+            <a href="#brusenje">Struženje rezkanje brušenje</a>
+        </nav>
+    </div>
 
-			<div class="card-grid fade-in">
-				<div class="card">
-					<h3>O podjetju</h3>
-					<p>Strugarstvo Pešak je družinsko podjetje z več kot 60-letno tradicijo na področju obdelave kovin. Začeli smo leta 1963 z eno stružnico, danes pa nas odlikuje sodoben strojni park in visoka stopnja prilagodljivosti.</p>
-				</div>
-
-				<div class="card">
-					<h3>Kaj delamo</h3>
-					<p>Izdelujemo kakovostne kovinske izdelke in polizdelke iz jekla, aluminija, nerjavečega jekla, medenine, brona, bakra in plastike – za različne industrije.</p>
-				</div>
-
-				<div class="card">
-					<h3>Tehnologija</h3>
-					<p>Naša proizvodnja temelji na sodobnih CNC strojih za palično struženje in rezkanje ter izkušenem kolektivu, ki skrbi za natančnost in učinkovitost.</p>
-				</div>
-
-				<div class="card">
-					<h3>Naša prednost</h3>
-					<p>Zanesljivost, prilagodljivost, ažurnost in kakovost – vrednote, ki jih cenimo mi in naši poslovni partnerji. Vedno iščemo optimalne rešitve.</p>
-				</div>
-			</div>
-		</div>
-	</section>
-
-    <!-- Services Section -->
-    <section class="services" id="storitve">
-        <div class="container">
-            <div class="section-header fade-in">
-                <h2 class="section-title">Proizvodni program</h2>
-                <p class="section-subtitle">Celovite rešitve za mehansko obdelavo kovin</p>
-            </div>
-            
-            <div class="services-grid">
-                <div class="service-card fade-in">
-                    <div class="service-image">
-                        <img src="images/galerija/3.jpg" alt="CNC rezkanje">
+    <main>
+        <section id="about">
+            <div class="section-inner">
+                <p class="section-heading">O podjetju</p>
+                <h2 class="section-title">Tradicija, kakovost in zanesljivost od leta 1963</h2>
+                <p class="section-subtitle">Strugarstvo Pešak je družinsko podjetje z več kot 60-letno tradicijo na področju obdelave kovin. Začeli smo leta 1963 z eno stružnico, danes pa nas odlikuje sodoben strojni park in visoka stopnja prilagodljivosti.</p>
+                <div class="card-grid">
+                    <div class="card">
+                        <h3>O podjetju</h3>
+                        <p>Strugarstvo Pešak je družinsko podjetje z več kot 60-letno tradicijo na področju obdelave kovin. Začeli smo leta 1963 z eno stružnico, danes pa nas odlikuje sodoben strojni park in visoka stopnja prilagodljivosti.</p>
                     </div>
-                    <div class="service-content">
-                        <h3>CNC rezkanje</h3>
-                        <p>Naše podjetje ima večletno tradicijo na področju mehanske obdelave kovin oziroma CNC rezkanja. Nudimo storitve CNC rezkanja v večjih in še posebno v manjših serijah.</p>
-                        <ul>
-                            <li>Obdelava barvnih kovin (aluminij, medenina)</li>
-                            <li>Obdelava nerjavečega in navadnega jekla</li>
-                            <li>CNC rezkanje kovin 500x300x300 mm</li>
-                            <li>Visoka kvaliteta izdelkov</li>
-                        </ul>
+                    <div class="card">
+                        <h3>Kaj delamo</h3>
+                        <p>Izdelujemo kakovostne kovinske izdelke in polizdelke iz jekla, aluminija, nerjavečega jekla, medenine, brona, bakra in plastike – za različne industrije.</p>
+                    </div>
+                    <div class="card">
+                        <h3>Tehnologija</h3>
+                        <p>Naša proizvodnja temelji na sodobnih CNC strojih za palično struženje in rezkanje ter izkušenem kolektivu, ki skrbi za natančnost in učinkovitost.</p>
+                    </div>
+                    <div class="card">
+                        <h3>Naša prednost</h3>
+                        <p>Zanesljivost, prilagodljivost, ažurnost in kakovost – vrednote, ki jih cenimo mi in naši poslovni partnerji. Vedno iščemo optimalne rešitve.</p>
                     </div>
                 </div>
-                
-                <div class="service-card fade-in">
-                    <div class="service-image">
-                        <img src="images/galerija/1.jpg" alt="CNC struženje">
-                    </div>
-                    <div class="service-content">
-                        <h3>CNC Struženje</h3>
-                        <p>Nudimo storitve na področju mehanske obdelave kovin oziroma CNC struženja v večjih in manjših serijah.</p>
+            </div>
+        </section>
+
+        <section id="struzenje">
+            <div class="section-inner">
+                <p class="section-heading">Proizvodni program</p>
+                <h2 class="section-title">CNC Struženje</h2>
+                <p class="section-subtitle">Nudimo storitve na področju mehanske obdelave kovin oziroma CNC struženja v večjih in manjših serijah.</p>
+                <div class="process-panel">
+                    <div class="process-media"><img src="images/galerija/1.jpg" alt="CNC struženje"></div>
+                    <div class="process-content">
+                        <p>Izvajamo palično, komadno in dolžinsko struženje. Izkušnje imamo z večino materialov v kovinski industriji, zato zagotavljamo visoko ponovljivost tudi pri manjših naročilih.</p>
                         <ul>
                             <li>Iz palic od Ø3 mm do Ø 65 mm</li>
                             <li>Komadno do Ø 350 mm</li>
@@ -943,31 +493,116 @@
                         </ul>
                     </div>
                 </div>
-                
-                <div class="service-card fade-in">
-                    <div class="service-image">
-                        <img src="images/varovalke/varovalke2.jpg" alt="Suhe plamenske varovalke">
-                    </div>
-                    <div class="service-content">
-                        <h3>Suhe plamenske varovalke</h3>
-                        <p>Suhe plamenske varovalke uporabljamo za zaščito jeklenk, gumi cevi in varilca pred povratnim udarom plamena pri avtogenem varjenju in rezanju.</p>
+            </div>
+        </section>
+
+        <section id="rezkanje">
+            <div class="section-inner">
+                <p class="section-heading">Proizvodni program</p>
+                <h2 class="section-title">CNC Rezkanje</h2>
+                <p class="section-subtitle">Naše podjetje ima večletno tradicijo na področju mehanske obdelave kovin oziroma CNC rezkanja. Nudimo storitve CNC rezkanja v večjih in še posebno v manjših serijah.</p>
+                <div class="process-panel">
+                    <div class="process-media"><img src="images/galerija/3.jpg" alt="CNC rezkanje"></div>
+                    <div class="process-content">
+                        <p>Obdelujemo barvne kovine, nerjaveče in navadno jeklo ter povezujemo rezkanje z drugimi postopki, da pripravimo kos do končne montaže.</p>
                         <ul>
-                            <li>Skladne s predpisom SIST EN 730/1997</li>
-                            <li>Maksimalna življenjska doba 3 leta</li>
-                            <li>Možnost izdelave priključkov po želji</li>
-                            <li>11 različnih tipov (P1-P6, P/B7, P5/2, P5/3, P6/2)</li>
-                            <li><a href="#dokumentacija">Tehnična dokumentacija na voljo za prenos</a></li>
+                            <li>Obdelava barvnih kovin (aluminij, medenina)</li>
+                            <li>Obdelava nerjavečega in navadnega jekla</li>
+                            <li>CNC rezkanje kovin 500x300x300 mm</li>
+                            <li>Visoka kvaliteta izdelkov</li>
                         </ul>
                     </div>
                 </div>
-                
-                <div class="service-card fade-in">
-                    <div class="service-image">
-                        <img src="images/ostalo/brusenje800c.jpg" alt="Dodatne storitve">
-                    </div>
-                    <div class="service-content">
-                        <h3>Struženje rezkanje brušenje odsekovanje</h3>
-                        <p>Nudimo tudi dodatno ponudbo struženja, rezkanja, brušenja in odsekovanja kovin.</p>
+            </div>
+        </section>
+
+        <section id="varovalke">
+            <div class="section-inner">
+                <p class="section-heading">Tipi suhih plamenskih varovalk</p>
+                <h2 class="section-title">Kompletna ponudba certificiranih varovalk</h2>
+                <p class="section-subtitle">Suhe plamenske varovalke uporabljamo za zaščito jeklenk, gumi cevi in varilca pred povratnim udarom plamena pri avtogenem varjenju in rezanju.</p>
+                <div class="varovalke-summary">
+                    <ul>
+                        <li>Skladne s predpisom SIST EN 730/1997</li>
+                        <li>Maksimalna življenjska doba 3 leta</li>
+                        <li>Možnost izdelave priključkov po želji</li>
+                        <li>11 različnih tipov (P1-P6, P/B7, P5/2, P5/3, P6/2)</li>
+                        <li>Tehnična dokumentacija na voljo za prenos</li>
+                    </ul>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Tip</th>
+                                <th>Plin</th>
+                                <th>Vhodni priključek</th>
+                                <th>Izhodni priključek</th>
+                                <th>Mesto montaže</th>
+                                <th>Max. pritisk</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>P1</td>
+                                <td>Kisik</td>
+                                <td>Gumi cev Ø6 mm</td>
+                                <td>Matica R1/4"D</td>
+                                <td>Gorilnik</td>
+                                <td>10 bar</td>
+                            </tr>
+                            <tr>
+                                <td>P2</td>
+                                <td>Acetilen</td>
+                                <td>Gumi cev Ø9 mm</td>
+                                <td>Matica R3/8"L</td>
+                                <td>Gorilnik</td>
+                                <td>1,5 bar</td>
+                            </tr>
+                            <tr>
+                                <td>P3</td>
+                                <td>Kisik</td>
+                                <td>Gumi cev Ø6 mm</td>
+                                <td>Gumi cev Ø6 mm</td>
+                                <td>Medcevna</td>
+                                <td>10 bar</td>
+                            </tr>
+                            <tr>
+                                <td>P4</td>
+                                <td>Acetilen</td>
+                                <td>Gumi cev Ø9 mm</td>
+                                <td>Gumi cev Ø9 mm</td>
+                                <td>Medcevna</td>
+                                <td>1,5 bar</td>
+                            </tr>
+                            <tr>
+                                <td>P5</td>
+                                <td>Kisik</td>
+                                <td>Matica R1/4"D</td>
+                                <td>Gumi cev Ø6 mm</td>
+                                <td>Manometer</td>
+                                <td>10 bar</td>
+                            </tr>
+                            <tr>
+                                <td>P/B7</td>
+                                <td>Propan-Butan</td>
+                                <td>Gumi cev Ø9 mm</td>
+                                <td>Matica R3/8"D</td>
+                                <td>Gorilnik</td>
+                                <td>1,5 bar</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+
+        <section id="brusenje">
+            <div class="section-inner">
+                <p class="section-heading">Dodatne storitve</p>
+                <h2 class="section-title">Struženje rezkanje brušenje odsekovanje</h2>
+                <p class="section-subtitle">Nudimo dodatno ponudbo struženja, rezkanja, brušenja in odsekovanja kovin.</p>
+                <div class="process-panel">
+                    <div class="process-media"><img src="images/ostalo/brusenje800c.jpg" alt="Brušenje"></div>
+                    <div class="process-content">
                         <ul>
                             <li>Odsekovanje kovin na ekscentričnih stiskalnicah do 42T</li>
                             <li>Okroglo brušenje Ø160 mm do Ø350 mm</li>
@@ -979,431 +614,106 @@
                     </div>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <!-- Flame Arrestors Detail Section -->
-    <section class="flame-details" id="varovalke">
-        <div class="container">
-            <div class="section-header fade-in">
-                <h2 class="section-title">Tipi suhih plamenskih varovalk</h2>
-                <p class="section-subtitle">Kompletna ponudba certificiranih varovalk</p>
-            </div>
-            
-            <div class="flame-grid fade-in">
-                <div class="flame-item">
-                    <img src="images/varovalke/varovalke2.jpg" alt="TIP P1">
-                    <h4>TIP - P1</h4>
-                    <div class="flame-details-text">
-                        <div class="flame-detail-row"><strong>Plin:</strong> Kisik</div>
-                        <div class="flame-detail-row"><strong>Vhodni priključek:</strong> Gumi cev Ø6 mm</div>
-                        <div class="flame-detail-row"><strong>Izhodni priključek:</strong> Matica R1/4"D</div>
-                        <div class="flame-detail-row"><strong>Mesto montaže:</strong> Gorilnik</div>
-                        <div class="flame-detail-row"><strong>Max. pritisk:</strong> 10 bar</div>
+        <section id="galerija">
+            <div class="section-inner">
+                <p class="section-heading">Galerija izdelkov</p>
+                <h2 class="section-title">Primeri naše kvalitetne CNC obdelave</h2>
+                <div class="gallery-grid">
+                    <div class="gallery-card">
+                        <img src="images/galerija/1.jpg" alt="Izdelek 1">
+                        <h3>Izdelek 1</h3>
                     </div>
-                </div>
-                <div class="flame-item">
-                    <img src="images/varovalke/varovalke25.jpg" alt="TIP P2">
-                    <h4>TIP - P2</h4>
-                    <div class="flame-details-text">
-                        <div class="flame-detail-row"><strong>Plin:</strong> Acetilen</div>
-                        <div class="flame-detail-row"><strong>Vhodni priključek:</strong> Gumi cev Ø9 mm</div>
-                        <div class="flame-detail-row"><strong>Izhodni priključek:</strong> Matica R3/8"L</div>
-                        <div class="flame-detail-row"><strong>Mesto montaže:</strong> Gorilnik</div>
-                        <div class="flame-detail-row"><strong>Max. pritisk:</strong> 1,5 bar</div>
+                    <div class="gallery-card">
+                        <img src="images/galerija/2.jpg" alt="Izdelek 2">
+                        <h3>Izdelek 2</h3>
                     </div>
-                </div>
-                <div class="flame-item">
-                    <img src="images/varovalke/varovalke26.jpg" alt="TIP P3">
-                    <h4>TIP - P3</h4>
-                    <div class="flame-details-text">
-                        <div class="flame-detail-row"><strong>Plin:</strong> Kisik</div>
-                        <div class="flame-detail-row"><strong>Vhodni priključek:</strong> Gumi cev Ø6 mm</div>
-                        <div class="flame-detail-row"><strong>Izhodni priključek:</strong> Gumi cev Ø6 mm</div>
-                        <div class="flame-detail-row"><strong>Mesto montaže:</strong> Medcevna</div>
-                        <div class="flame-detail-row"><strong>Max. pritisk:</strong> 10 bar</div>
+                    <div class="gallery-card">
+                        <img src="images/galerija/3.jpg" alt="Izdelek 3">
+                        <h3>Izdelek 3</h3>
                     </div>
-                </div>
-                <div class="flame-item">
-                    <img src="images/varovalke/varovalke27.jpg" alt="TIP P4">
-                    <h4>TIP - P4</h4>
-                    <div class="flame-details-text">
-                        <div class="flame-detail-row"><strong>Plin:</strong> Acetilen</div>
-                        <div class="flame-detail-row"><strong>Vhodni priključek:</strong> Gumi cev Ø9 mm</div>
-                        <div class="flame-detail-row"><strong>Izhodni priključek:</strong> Gumi cev Ø9 mm</div>
-                        <div class="flame-detail-row"><strong>Mesto montaže:</strong> Medcevna</div>
-                        <div class="flame-detail-row"><strong>Max. pritisk:</strong> 1,5 bar</div>
+                    <div class="gallery-card">
+                        <img src="images/galerija/4.jpg" alt="Izdelek 4">
+                        <h3>Izdelek 4</h3>
                     </div>
-                </div>
-                <div class="flame-item">
-                    <img src="images/varovalke/varovalke28.jpg" alt="TIP P5">
-                    <h4>TIP - P5</h4>
-                    <div class="flame-details-text">
-                        <div class="flame-detail-row"><strong>Plin:</strong> Kisik</div>
-                        <div class="flame-detail-row"><strong>Vhodni priključek:</strong> Matica R1/4"D</div>
-                        <div class="flame-detail-row"><strong>Izhodni priključek:</strong> Gumi cev Ø6 mm</div>
-                        <div class="flame-detail-row"><strong>Mesto montaže:</strong> Manometer</div>
-                        <div class="flame-detail-row"><strong>Max. pritisk:</strong> 10 bar</div>
+                    <div class="gallery-card">
+                        <img src="images/galerija/5.jpg" alt="Izdelek 5">
+                        <h3>Izdelek 5</h3>
                     </div>
-                </div>
-                <div class="flame-item">
-                    <img src="images/varovalke/varovalke4.jpg" alt="TIP P6">
-                    <h4>TIP - P6</h4>
-                    <div class="flame-details-text">
-                        <div class="flame-detail-row"><strong>Plin:</strong> Acetilen</div>
-                        <div class="flame-detail-row"><strong>Vhodni priključek:</strong> Matica R3/8"L</div>
-                        <div class="flame-detail-row"><strong>Izhodni priključek:</strong> Gumi cev Ø9 mm</div>
-                        <div class="flame-detail-row"><strong>Mesto montaže:</strong> Manometer</div>
-                        <div class="flame-detail-row"><strong>Max. pritisk:</strong> 1,5 bar</div>
-                    </div>
-                </div>
-                <div class="flame-item">
-                    <img src="images/varovalke/varovalke6.jpg" alt="TIP P/B7">
-                    <h4>TIP - P/B7</h4>
-                    <div class="flame-details-text">
-                        <div class="flame-detail-row"><strong>Plin:</strong> Propan-Butan</div>
-                        <div class="flame-detail-row"><strong>Vhodni priključek:</strong> Gumi cev Ø9 mm</div>
-                        <div class="flame-detail-row"><strong>Izhodni priključek:</strong> Matica R3/8"D</div>
-                        <div class="flame-detail-row"><strong>Mesto montaže:</strong> Gorilnik</div>
-                        <div class="flame-detail-row"><strong>Max. pritisk:</strong> 1,5 bar</div>
-                    </div>
-                </div>
-                <div class="flame-item">
-                    <img src="images/varovalke/varovalke8a.jpg" alt="TIP P/B7-6">
-                    <h4>TIP - P/B7-6</h4>
-                    <div class="flame-details-text">
-                        <div class="flame-detail-row"><strong>Plin:</strong> Propan-Butan</div>
-                        <div class="flame-detail-row"><strong>Vhodni priključek:</strong> Matica R3/8"L</div>
-                        <div class="flame-detail-row"><strong>Izhodni priključek:</strong> Gumi cev Ø9 mm</div>
-                        <div class="flame-detail-row"><strong>Mesto montaže:</strong> Manometer</div>
-                        <div class="flame-detail-row"><strong>Max. pritisk:</strong> 1,5 bar</div>
-                    </div>
-                </div>
-                <div class="flame-item">
-                    <img src="images/varovalke/varovalke2.jpg" alt="TIP P5/2">
-                    <h4>TIP - P5/2</h4>
-                    <div class="flame-details-text">
-                        <div class="flame-detail-row"><strong>Plin:</strong> Kisik</div>
-                        <div class="flame-detail-row"><strong>Vhodni priključek:</strong> Holander R1/4"D</div>
-                        <div class="flame-detail-row"><strong>Izhodni priključek:</strong> Matica R1/4"D</div>
-                        <div class="flame-detail-row"><strong>Mesto montaže:</strong> Strojni rezalnik</div>
-                        <div class="flame-detail-row"><strong>Max. pritisk:</strong> 10 bar</div>
-                    </div>
-                </div>
-                <div class="flame-item">
-                    <img src="images/varovalke/varovalke25.jpg" alt="TIP P5/3">
-                    <h4>TIP - P5/3</h4>
-                    <div class="flame-details-text">
-                        <div class="flame-detail-row"><strong>Plin:</strong> Kisik</div>
-                        <div class="flame-detail-row"><strong>Vhodni priključek:</strong> Holander R3/8"D</div>
-                        <div class="flame-detail-row"><strong>Izhodni priključek:</strong> Matica R3/8"D</div>
-                        <div class="flame-detail-row"><strong>Mesto montaže:</strong> Strojni rezalnik</div>
-                        <div class="flame-detail-row"><strong>Max. pritisk:</strong> 10 bar</div>
-                    </div>
-                </div>
-                <div class="flame-item">
-                    <img src="images/varovalke/varovalke26.jpg" alt="TIP P6/2">
-                    <h4>TIP - P6/2</h4>
-                    <div class="flame-details-text">
-                        <div class="flame-detail-row"><strong>Plin:</strong> Acetilen</div>
-                        <div class="flame-detail-row"><strong>Vhodni priključek:</strong> Holander R3/8"L</div>
-                        <div class="flame-detail-row"><strong>Izhodni priključek:</strong> Matica R3/8"D</div>
-                        <div class="flame-detail-row"><strong>Mesto montaže:</strong> Strojni rezalnik</div>
-                        <div class="flame-detail-row"><strong>Max. pritisk:</strong> 1,5 bar</div>
+                    <div class="gallery-card">
+                        <img src="images/galerija/6.jpg" alt="Izdelek 6">
+                        <h3>Izdelek 6</h3>
                     </div>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <!-- Gallery Section -->
-    <section class="gallery" id="galerija">
-        <div class="container">
-            <div class="section-header fade-in">
-                <h2 class="section-title">Galerija izdelkov</h2>
-                <p class="section-subtitle">Primeri naše kvalitetne CNC obdelave</p>
-            </div>
-            
-            <div class="gallery-grid" id="galleryGrid">
-                <!-- Gallery items will be dynamically generated here -->
-            </div>
-        </div>
-    </section>
-
-    <!-- Lightbox -->
-    <div class="lightbox" id="lightbox">
-        <span class="lightbox-close" onclick="closeLightbox()">&times;</span>
-        <span class="lightbox-nav lightbox-prev" onclick="changeImage(-1)">‹</span>
-        <span class="lightbox-nav lightbox-next" onclick="changeImage(1)">›</span>
-        <div class="lightbox-content">
-            <img id="lightbox-img" src="" alt="">
-        </div>
-    </div>
-
-	<section class="flame-details" id="dokumentacija">
-		<div class="container">
-			<div class="document-downloads fade-in">
-				<h3>Tehnična dokumentacija</h3>
-				<div class="download-buttons">
-					<a class="download-btn" href="Tehnično navodilo.pdf" download>
-						<div class="download-icon">📄</div>
-						<div class="download-text">
-							<strong>Tehnično navodilo</strong>
-							<small>PDF dokument z navodili za uporabo</small>
-						</div>
-					</a>
-					<a class="download-btn" href="TABELA SUHE PLAMENSKE VAROVALKE 2025.docx" download>
-						<div class="download-icon">📄</div>
-						<div class="download-text">
-							<strong>Tehnična tabela</strong>
-							<small>DOCX dokument s tehničnimi podatki</small>
-						</div>
-					</a>
-				</div>
-			</div>
-		</div>
-	</section>
-
-    <!-- Contact Section -->
-    <section class="contact" id="contact">
-        <div class="container">
-            <div class="section-header fade-in">
-                <h2 class="section-title">Kontakt</h2>
-                <p class="section-subtitle">Naslov in lokacija</p>
-            </div>
-            
-            <div class="contact-wrapper">
-                <div class="contact-info fade-in">
-                    <h3 class="company-name">Strugarstvo Pešak d.o.o.</h3>
-                    
-                    <div class="contact-details">
-                        <div class="contact-item">
-                            <div class="contact-icon">📍</div>
-                            <div class="contact-text">
-                                <h4>Lokacija</h4>
-                                <p>Bevkova ulica 1<br>3000 Celje</p>
-                            </div>
-                        </div>
-                        
-                        <div class="contact-item">
-                            <div class="contact-icon">📞</div>
-                            <div class="contact-text">
-                                <h4>Tel</h4>
-                                <p>041 668 023</p>
-                            </div>
-                        </div>
-                        
-                        <div class="contact-item">
-                            <div class="contact-icon">📱</div>
-                            <div class="contact-text">
-                                <h4>Gsm</h4>
-                                <p>040 995 262</p>
-                            </div>
-                        </div>
-                        
-                        <div class="contact-item">
-                            <div class="contact-icon">✉️</div>
-                            <div class="contact-text">
-                                <h4>E-pošta</h4>
-                                <p>strugarstvo.pesak@siol.net</p>
-                            </div>
-                        </div>
+        <section id="dokumentacija">
+            <div class="section-inner">
+                <p class="section-heading">Tehnična dokumentacija</p>
+                <h2 class="section-title">Tehnična dokumentacija</h2>
+                <div class="docs-grid">
+                    <div class="doc-card">
+                        <h3>Tehnično navodilo</h3>
+                        <p>PDF dokument z navodili za uporabo.</p>
+                        <a href="Tehnično navodilo.pdf" download>Prenesi PDF</a>
                     </div>
-                </div>
-                
-                <div class="map-container fade-in">
-                    <div class="map-placeholder">
-                        <iframe 
-                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2763.5958559173846!2d15.2442!3d46.2387!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x476567c9c9d2e7b3%3A0x6a6f2e5c5e5f5f5f!2sBevkova%20ulica%201%2C%203000%20Celje%2C%20Slovenia!5e0!3m2!1sen!2ssi!4v1620000000000!5m2!1sen!2ssi" 
-                            width="100%" 
-                            height="100%" 
-                            style="border:0;" 
-                            allowfullscreen="" 
-                            loading="lazy">
-                        </iframe>
+                    <div class="doc-card">
+                        <h3>Tehnična tabela</h3>
+                        <p>DOCX dokument s tehničnimi podatki.</p>
+                        <a href="TABELA SUHE PLAMENSKE VAROVALKE 2025.docx" download>Prenesi DOCX</a>
                     </div>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <!-- Footer -->
+        <section id="contact">
+            <div class="section-inner">
+                <p class="section-heading">Kontakt</p>
+                <h2 class="section-title">Naslov in lokacija</h2>
+                <div class="contact-card">
+                    <div class="contact-info">
+                        <h3>Strugarstvo Pešak d.o.o.</h3>
+                        <ul>
+                            <li>
+                                <strong>Lokacija</strong>
+                                <span>Bevkova ulica 1<br>3000 Celje</span>
+                            </li>
+                            <li>
+                                <strong>Tel</strong>
+                                <span>041 668 023</span>
+                            </li>
+                            <li>
+                                <strong>Gsm</strong>
+                                <span>040 995 262</span>
+                            </li>
+                            <li>
+                                <strong>E-pošta</strong>
+                                <a href="mailto:strugarstvo.pesak@siol.net">strugarstvo.pesak@siol.net</a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div>
+                        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2763.5958559173846!2d15.2442!3d46.2387!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x476567c9c9d2e7b3%3A0x6a6f2e5c5e5f5f5f!2sBevkova%20ulica%201%2C%203000%20Celje%2C%20Slovenia!5e0!3m2!1sen!2ssi!4v1620000000000!5m2!1sen!2ssi" width="100%" height="320" style="border:0; border-radius: 16px;" allowfullscreen="" loading="lazy"></iframe>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
     <footer>
         <p>&copy; 2025 Strugarstvo Pešak d.o.o. Vse pravice pridržane.</p>
     </footer>
 
+    <a class="sticky-cta" href="#contact">Pošljite povpraševanje</a>
+
     <script>
-        const GALLERY_CONFIG = {
-            imagePath: 'images/galerija/',
-            totalImages: 12,
-            imageExtension: '.jpg'
-        };
-
-        // Gallery image sources array
-        let galleryImages = [];
-
-        // Initialize gallery
-        function initializeGallery() {
-            const galleryGrid = document.getElementById('galleryGrid');
-            galleryGrid.innerHTML = '';
-            galleryImages = [];
-            
-            // Add cache-busting timestamp
-            const cacheBuster = new Date().getTime();
-            
-            // Generate gallery items based on configuration
-            for (let i = 1; i <= GALLERY_CONFIG.totalImages; i++) {
-                const imageSrc = GALLERY_CONFIG.imagePath + i + GALLERY_CONFIG.imageExtension + '?v=' + cacheBuster;
-                
-                const galleryItem = document.createElement('div');
-                galleryItem.className = 'gallery-item fade-in';
-                
-                const img = document.createElement('img');
-                img.src = imageSrc;
-                img.alt = 'Izdelek ' + i;
-                img.loading = 'lazy';
-                
-                // Handle successful image load
-                img.onload = function() {
-                    galleryItem.style.display = 'block'; // Show only if image loads
-                    const index = galleryImages.length;
-                    galleryImages.push(imageSrc);
-                    galleryItem.setAttribute('data-index', index);
-                    
-                    // Add click event listener
-                    galleryItem.addEventListener('click', function() {
-                        openLightbox(index);
-                    });
-                    
-                    // Observe for fade-in animation
-                    observer.observe(galleryItem);
-                };
-                
-                // Handle image load error
-                img.onerror = function() {
-                    galleryItem.remove(); // Remove from DOM if image doesn't exist
-                };
-                
-                galleryItem.appendChild(img);
-                galleryGrid.appendChild(galleryItem);
-            }
-        }
-
-        // Lightbox functionality
-        let currentImageIndex = 0;
-        const lightbox = document.getElementById('lightbox');
-        const lightboxImg = document.getElementById('lightbox-img');
-
-        function openLightbox(index) {
-            currentImageIndex = index;
-            // Add cache buster to prevent showing cached deleted images
-            const currentSrc = galleryImages[index];
-            const srcWithoutCache = currentSrc.split('?')[0];
-            lightboxImg.src = srcWithoutCache + '?v=' + new Date().getTime();
-            lightbox.classList.add('active');
-            document.body.style.overflow = 'hidden';
-        }
-
-        function closeLightbox() {
-            lightbox.classList.remove('active');
-            document.body.style.overflow = 'auto';
-        }
-
-        function changeImage(direction) {
-            currentImageIndex += direction;
-            if (currentImageIndex < 0) {
-                currentImageIndex = galleryImages.length - 1;
-            } else if (currentImageIndex >= galleryImages.length) {
-                currentImageIndex = 0;
-            }
-            // Update cache buster for lightbox images too
-            const currentSrc = galleryImages[currentImageIndex];
-            const srcWithoutCache = currentSrc.split('?')[0];
-            lightboxImg.src = srcWithoutCache + '?v=' + new Date().getTime();
-        }
-
-        // Close lightbox on click outside
-        lightbox.addEventListener('click', (e) => {
-            if (e.target === lightbox) {
-                closeLightbox();
-            }
-        });
-
-        // Keyboard navigation for lightbox
-        document.addEventListener('keydown', (e) => {
-            if (lightbox.classList.contains('active')) {
-                if (e.key === 'Escape') {
-                    closeLightbox();
-                } else if (e.key === 'ArrowLeft') {
-                    changeImage(-1);
-                } else if (e.key === 'ArrowRight') {
-                    changeImage(1);
-                }
-            }
-        });
-
-        // Scroll Progress Bar
+        const progressBar = document.getElementById('scrollProgress');
         window.addEventListener('scroll', () => {
-            const scrollTop = window.scrollY;
-            const documentHeight = document.documentElement.scrollHeight - window.innerHeight;
-            const scrollPercentage = (scrollTop / documentHeight) * 100;
-            document.getElementById('scrollProgress').style.width = scrollPercentage + '%';
-        });
-
-        // Navbar scroll effect
-        window.addEventListener('scroll', () => {
-            const navbar = document.getElementById('navbar');
-            if (window.scrollY > 50) {
-                navbar.classList.add('scrolled');
-            } else {
-                navbar.classList.remove('scrolled');
-            }
-        });
-
-        // Smooth scrolling for navigation links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    target.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'start'
-                    });
-                }
-            });
-        });
-
-        // Fade in animation on scroll
-        const observerOptions = {
-            threshold: 0.1,
-            rootMargin: '0px 0px -50px 0px'
-        };
-
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('visible');
-                }
-            });
-        }, observerOptions);
-
-        document.querySelectorAll('.fade-in').forEach(el => {
-            observer.observe(el);
-        });
-
-        // Mobile menu toggle
-        const mobileMenuToggle = document.querySelector('.mobile-menu-toggle');
-        const navLinks = document.querySelector('.nav-links');
-        
-        mobileMenuToggle.addEventListener('click', () => {
-            navLinks.classList.toggle('mobile-active');
-            mobileMenuToggle.classList.toggle('active');
-        });
-
-        // Initialize gallery when DOM is loaded
-        document.addEventListener('DOMContentLoaded', function() {
-            initializeGallery();
+            const scrollHeight = document.documentElement.scrollHeight - window.innerHeight;
+            const scrolled = (window.scrollY / scrollHeight) * 100;
+            progressBar.style.width = scrolled + '%';
         });
     </script>
 </body>
