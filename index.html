@@ -340,6 +340,39 @@
             border-radius: 12px;
             height: 160px;
             object-fit: cover;
+            cursor: pointer;
+        }
+
+        .lightbox {
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.85);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem;
+            z-index: 1200;
+        }
+
+        .lightbox.active {
+            display: flex;
+        }
+
+        .lightbox img {
+            max-width: 90%;
+            max-height: 90%;
+            border-radius: 16px;
+            box-shadow: 0 25px 60px rgba(0, 0, 0, 0.6);
+        }
+
+        .lightbox-close {
+            position: absolute;
+            top: 1.5rem;
+            right: 2rem;
+            font-size: 2.5rem;
+            color: #fff;
+            cursor: pointer;
+            font-weight: 300;
         }
 
         .doc-card a {
@@ -400,6 +433,13 @@
             font-weight: 600;
             box-shadow: 0 18px 35px rgba(12, 69, 153, 0.35);
             z-index: 950;
+            transition: opacity 0.3s ease, transform 0.3s ease;
+        }
+
+        .sticky-cta.hidden {
+            opacity: 0;
+            pointer-events: none;
+            transform: translateY(15px);
         }
 
         @media (max-width: 900px) {
@@ -652,6 +692,11 @@
             </div>
         </section>
 
+        <div class="lightbox" id="galleryLightbox" onclick="closeLightbox()">
+            <span class="lightbox-close" onclick="closeLightbox(event)">&times;</span>
+            <img id="lightboxImage" src="" alt="Povečana fotografija">
+        </div>
+
         <section id="dokumentacija">
             <div class="section-inner">
                 <p class="section-heading">Tehnična dokumentacija</p>
@@ -718,6 +763,41 @@
             const scrolled = (window.scrollY / scrollHeight) * 100;
             progressBar.style.width = scrolled + '%';
         });
+
+        const lightbox = document.getElementById('galleryLightbox');
+        const lightboxImg = document.getElementById('lightboxImage');
+
+        document.querySelectorAll('.gallery-card img').forEach(img => {
+            img.addEventListener('click', () => openLightbox(img.getAttribute('src')));
+        });
+
+        function openLightbox(src) {
+            lightboxImg.src = src;
+            lightbox.classList.add('active');
+        }
+
+        function closeLightbox(event) {
+            if (event) {
+                event.stopPropagation();
+            }
+            lightbox.classList.remove('active');
+            lightboxImg.src = '';
+        }
+
+        const stickyCta = document.querySelector('.sticky-cta');
+        const contactSection = document.getElementById('contact');
+        if (stickyCta && contactSection) {
+            const ctaObserver = new IntersectionObserver(entries => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        stickyCta.classList.add('hidden');
+                    } else {
+                        stickyCta.classList.remove('hidden');
+                    }
+                });
+            }, { threshold: 0.4 });
+            ctaObserver.observe(contactSection);
+        }
     </script>
 </body>
 </html>
